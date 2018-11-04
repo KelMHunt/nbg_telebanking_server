@@ -2,12 +2,15 @@ package nbg.telebanking.models;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -17,6 +20,9 @@ import javax.persistence.TemporalType;
 public class Message implements Serializable{
 
 	private static final long serialVersionUID = 1L;
+	
+	@OneToMany(mappedBy="message")
+	private List<User> users = new ArrayList<>();//using a list collection because the elements dont need to be unique
 	
 	@Id
 	@Column(name="msg_id", nullable=false, updatable=false)
